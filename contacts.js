@@ -19,15 +19,13 @@ function listContacts() {
 function getContactById(contactId) {
   console.log('Вызов getContactById(contactId)');
   fs.readFile(contactsPath)
-    .then(data => data.toString().split())
+    .then(data => JSON.parse(data))
     .then(contacts => {
-      console.log('typeof contacts:', typeof contacts);
-      //   contacts.map(contact => contact.id);
-      console.log('Key:', Object.keys(contacts));
-      console.log('Values:', Object.values(contacts));
-      for (const key in contacts) {
-        console.log('Key: ', key);
-      }
+      contacts.find(contact => {
+        if (contact.id === contactId) {
+          console.log(contact);
+        }
+      });
     })
     .catch(err => console.error(err.message));
 }

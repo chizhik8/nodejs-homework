@@ -6,6 +6,6 @@ const {
 } = require('./contacts.js');
 
 // listContacts();
-getContactById();
+getContactById(8);
 // removeContact();
 // addContact();
