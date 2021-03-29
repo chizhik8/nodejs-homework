@@ -35,19 +35,20 @@ function removeContact(contactId) {
 
 function addContact(name, email, phone) {
   fs.readFile(contactsPath)
-    .then(data => {
-      JSON.parse(data);
+    .then(data => JSON.parse(data))
+    .then(contacts => {
       let contact = {
-        id: Object.keys(JSON.parse(data)).length + 1,
+        id: Object.keys(contacts).length + 1,
         name: name,
         email: email,
         phone: phone,
       };
-      fs.writeFile(contactsPath, JSON.stringify(contact), {
-        flag: 'a+',
-      }).catch(err => console.error(err));
+      contacts.push(contact);
+      fs.writeFile(contactsPath, JSON.stringify(contacts)).catch(err =>
+        console.error(err),
+      );
     })
-    .catch(err => console.error(err.message));
+    .catch();
 }
 
 module.exports = {
