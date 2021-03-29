@@ -34,15 +34,20 @@ function removeContact(contactId) {
 }
 
 function addContact(name, email, phone) {
-  fs.writeFile(contactsPath, name, { flag: 'a+' }).catch(err =>
-    console.error(err),
-  );
-  fs.writeFile(contactsPath, email, { flag: 'a+' }).catch(err =>
-    console.error(err),
-  );
-  fs.writeFile(contactsPath, phone, { flag: 'a+' }).catch(err =>
-    console.error(err),
-  );
+  fs.readFile(contactsPath)
+    .then(data => {
+      JSON.parse(data);
+      let contact = {
+        id: Object.keys(JSON.parse(data)).length + 1,
+        name: name,
+        email: email,
+        phone: phone,
+      };
+      fs.writeFile(contactsPath, JSON.stringify(contact), {
+        flag: 'a+',
+      }).catch(err => console.error(err));
+    })
+    .catch(err => console.error(err.message));
 }
 
 module.exports = {
