@@ -5,7 +5,6 @@ const contactsPath = path.join(__dirname, 'db', 'contacts.json');
 // console.log('contactsPath:', contactsPath);
 
 // В функциях используй модуль fs и его методы readFile() и writeFile()
-
 // TODO: задокументировать каждую функцию
 
 function listContacts() {
@@ -26,6 +25,9 @@ function getContactById(contactId) {
       //   contacts.map(contact => contact.id);
       console.log('Key:', Object.keys(contacts));
       console.log('Values:', Object.values(contacts));
+      for (const key in contacts) {
+        console.log('Key: ', key);
+      }
     })
     .catch(err => console.error(err.message));
 }
