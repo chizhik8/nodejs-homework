@@ -7,8 +7,6 @@ const {
   addContact,
 } = require('./contacts.js');
 
-addContact('name', 'email', 'phone');
-
 // TODO: рефакторить
 function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
@@ -33,4 +31,4 @@ function invokeAction({ action, id, name, email, phone }) {
   }
 }
 
-// invokeAction(argv);
+invokeAction(argv);
